@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Depends
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 import redis
 import base64
@@ -54,7 +55,7 @@ def redirect_url(short_id: str, db: Session = Depends(get_db), r: redis.Redis = 
     cached_url = r.get(short_id)
     
     if cached_url:  # Cache hit
-        return {"long_url": cached_url}  # Return the long URL from cache
+        return RedirectResponse(url=cached_url, status_code=302)  # Return the long URL from cache
     
     # If not in cache, check the database
     db_entry = crud.get_by_short_id(db, short_id)
@@ -64,5 +65,5 @@ def redirect_url(short_id: str, db: Session = Depends(get_db), r: redis.Redis = 
     
     # Cache the long URL in Redis and return it
     r.set(short_id, db_entry.long_url)
-    return {"long_url": db_entry.long_url}
+    return RedirectResponse(url=db_entry.long_url, status_code=302)
 
