@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+*.env
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Logs and databases
+*.log
+*.sqlite3
+*.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# pytest and coverage
+.coverage
+.tox/
+htmlcov/
+
+# Mypy cache
+.mypy_cache/
+
+# Docker
+*.dockerignore
+
+# Celery beat schedule file
+celerybeat-schedule
+
+# Ignore environment variable files
+.envrc
